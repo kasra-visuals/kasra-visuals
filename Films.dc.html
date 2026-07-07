@@ -27,7 +27,7 @@
 
   <!-- NAV -->
   <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;backdrop-filter:blur(14px);background:rgba(10,10,11,.72);border-bottom:1px solid rgba(244,242,238,.08)">
-    <a href="Kasra Visuals.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:16px;letter-spacing:.14em">
+    <a href="index.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:16px;letter-spacing:.14em">
       <span style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px">
         <span style="position:absolute;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--accent,#e0894a);animation:kv-ring 2.4s ease-out infinite"></span>
         <span style="position:absolute;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--accent,#e0894a);animation:kv-ring 2.4s ease-out infinite 1.2s"></span>
@@ -36,9 +36,9 @@
       KASRA<span style="opacity:.5;font-weight:400"> VISUALS</span>
     </a>
     <div style="display:flex;align-items:center;gap:34px;font-size:13.5px;letter-spacing:.04em">
-      <a href="Kasra Visuals.dc.html" style="opacity:.72;transition:opacity .2s" style-hover="{{ navHover }}">Home</a>
+      <a href="index.dc.html" style="opacity:.72;transition:opacity .2s" style-hover="{{ navHover }}">Home</a>
       <a href="#films" style="color:var(--accent,#e0894a)">Films</a>
-      <a href="Kasra Visuals.dc.html#contact" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-weight:600;letter-spacing:.02em;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project</a>
+      <a href="index.dc.html#contact" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-weight:600;letter-spacing:.02em;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project</a>
     </div>
   </nav>
 
@@ -60,6 +60,7 @@
       <sc-for list="{{ films }}" as="it" hint-placeholder-count="9">
         <button onClick="{{ it.onOpen }}" onMouseEnter="{{ it.onEnter }}" onMouseLeave="{{ it.onLeave }}" style="position:relative;display:block;padding:0;border:1px solid rgba(244,242,238,.08);border-radius:14px;overflow:hidden;aspect-ratio:16/10;cursor:pointer;background:repeating-linear-gradient(135deg,#17171a 0,#17171a 10px,#141416 10px,#141416 20px);text-align:left">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:rgba(244,242,238,.22)">{{ it.ph }}</div>
+          <div style="{{ it.coverStyle }}"></div>
           <div style="{{ it.zoomStyle }}"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,0) 38%,rgba(10,10,11,.9))"></div>
           <div style="{{ it.playStyle }}">
@@ -78,12 +79,12 @@
   <!-- CTA STRIP -->
   <section style="padding:70px 40px;border-top:1px solid rgba(244,242,238,.08);text-align:center">
     <h2 style="margin:0 0 22px;font-size:clamp(28px,4vw,48px);font-weight:600;letter-spacing:-.02em">Have a film in mind?</h2>
-    <a href="Kasra Visuals.dc.html#contact" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-size:15px;font-weight:600;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project →</a>
+    <a href="index.dc.html#contact" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-size:15px;font-weight:600;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project →</a>
   </section>
 
   <!-- FOOTER -->
   <footer style="padding:48px 40px;border-top:1px solid rgba(244,242,238,.08);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;max-width:1260px;margin:0 auto">
-    <a href="Kasra Visuals.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.14em;font-size:15px">
+    <a href="index.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.14em;font-size:15px">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--accent,#e0894a)"></span>KASRA VISUALS
     </a>
     <div style="font-size:13px;color:rgba(244,242,238,.4)">© 2026 Kasra Visuals — Commercial &amp; brand film studio</div>
@@ -146,12 +147,15 @@ class Component extends DCLogic {
       { id:6, client:'Lumen Skincare', category:'Commercial', title:'Brand anthem', year:'2024', vimeo:'' },
       { id:7, client:'Halcyon Hotels', category:'Hospitality', title:'Property film', year:'2024', vimeo:'' },
       { id:8, client:'Field & Forge', category:'Craft', title:'Maker documentary', year:'2024', vimeo:'' },
-      { id:9, client:'Northwind Audio', category:'Tech', title:'Launch teaser', year:'2023', vimeo:'' },
+      { id:9, client:'Peelclear', category:'Automotive', title:'Teaser', year:'2026', vimeo:'https://player.vimeo.com/video/1207793207?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&title=0&byline=0&portrait=0', cover:'https://vumbnail.com/1207793207.jpg' },
     ];
     const films = data.map(it => {
       const hov = this.state.hovered === it.id;
       return {
         ...it, ph:'16:9 · FILM STILL',
+        coverStyle: it.cover
+          ? `position:absolute;inset:0;background-image:url(${it.cover});background-size:cover;background-position:center;transition:transform .5s;transform:scale(${hov?1.05:1})`
+          : 'display:none',
         onEnter: () => this.setState({ hovered: it.id }),
         onLeave: () => this.setState({ hovered: null }),
         onOpen: () => this.setState({ active: it }),
