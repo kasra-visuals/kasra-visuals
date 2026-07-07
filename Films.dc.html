@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#0a0a0b;color:#f4f2ee;font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--accent,#e0894a)}
+  ::selection{background:var(--accent,#e0894a);color:#0a0a0b}
+  @keyframes kv-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes kv-ring{0%{transform:scale(.7);opacity:.9}100%{transform:scale(2.8);opacity:0}}
+  @keyframes kv-core{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.6}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;overflow-x:hidden">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;backdrop-filter:blur(14px);background:rgba(10,10,11,.72);border-bottom:1px solid rgba(244,242,238,.08)">
+    <a href="Kasra Visuals.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;font-size:16px;letter-spacing:.14em">
+      <span style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:10px;height:10px">
+        <span style="position:absolute;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--accent,#e0894a);animation:kv-ring 2.4s ease-out infinite"></span>
+        <span style="position:absolute;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--accent,#e0894a);animation:kv-ring 2.4s ease-out infinite 1.2s"></span>
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--accent,#e0894a);box-shadow:0 0 12px var(--accent,#e0894a);animation:kv-core 2.4s ease-in-out infinite"></span>
+      </span>
+      KASRA<span style="opacity:.5;font-weight:400"> VISUALS</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:34px;font-size:13.5px;letter-spacing:.04em">
+      <a href="Kasra Visuals.dc.html" style="opacity:.72;transition:opacity .2s" style-hover="{{ navHover }}">Home</a>
+      <a href="#films" style="color:var(--accent,#e0894a)">Films</a>
+      <a href="Kasra Visuals.dc.html#contact" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-weight:600;letter-spacing:.02em;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header id="films" style="position:relative;padding:96px 40px 44px;overflow:hidden">
+    <div style="position:absolute;inset:0;z-index:0;background:radial-gradient(90% 120% at 82% 0%, rgba(224,137,74,.14), transparent 55%)"></div>
+    <div style="position:relative;z-index:1;max-width:1260px;margin:0 auto">
+      <div style="font:12px/1 ui-monospace,Menlo,monospace;letter-spacing:.24em;color:var(--accent,#e0894a);margin-bottom:20px">THE FILMS</div>
+      <h1 style="margin:0;font-weight:600;font-size:clamp(44px,7vw,96px);line-height:.94;letter-spacing:-.02em">
+        Every frame,<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--accent,#e0894a)">on purpose.</span>
+      </h1>
+      <p style="max-width:520px;margin:30px 0 0;font-size:17px;line-height:1.6;color:rgba(244,242,238,.6)">A selection of commercial and brand films. Click any title to watch.</p>
+    </div>
+  </header>
+
+  <!-- FILMS GRID -->
+  <section style="padding:20px 40px 110px;max-width:1260px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:22px">
+      <sc-for list="{{ films }}" as="it" hint-placeholder-count="9">
+        <button onClick="{{ it.onOpen }}" onMouseEnter="{{ it.onEnter }}" onMouseLeave="{{ it.onLeave }}" style="position:relative;display:block;padding:0;border:1px solid rgba(244,242,238,.08);border-radius:14px;overflow:hidden;aspect-ratio:16/10;cursor:pointer;background:repeating-linear-gradient(135deg,#17171a 0,#17171a 10px,#141416 10px,#141416 20px);text-align:left">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:rgba(244,242,238,.22)">{{ it.ph }}</div>
+          <div style="{{ it.zoomStyle }}"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,0) 38%,rgba(10,10,11,.9))"></div>
+          <div style="{{ it.playStyle }}">
+            <span style="width:0;height:0;border-left:13px solid #0a0a0b;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px"></span>
+          </div>
+          <div style="position:absolute;left:22px;right:22px;bottom:20px">
+            <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,#e0894a);margin-bottom:7px">{{ it.category }}</div>
+            <div style="font-size:22px;font-weight:600;letter-spacing:-.01em">{{ it.client }}</div>
+            <div style="font-size:13.5px;color:rgba(244,242,238,.55);margin-top:3px">{{ it.title }} · {{ it.year }}</div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section style="padding:70px 40px;border-top:1px solid rgba(244,242,238,.08);text-align:center">
+    <h2 style="margin:0 0 22px;font-size:clamp(28px,4vw,48px);font-weight:600;letter-spacing:-.02em">Have a film in mind?</h2>
+    <a href="Kasra Visuals.dc.html#contact" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:100px;background:var(--accent,#e0894a);color:#0a0a0b;font-size:15px;font-weight:600;transition:transform .2s" style-hover="{{ ctaHover }}">Start a project →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:48px 40px;border-top:1px solid rgba(244,242,238,.08);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;max-width:1260px;margin:0 auto">
+    <a href="Kasra Visuals.dc.html" style="display:flex;align-items:center;gap:11px;font-weight:600;letter-spacing:.14em;font-size:15px">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--accent,#e0894a)"></span>KASRA VISUALS
+    </a>
+    <div style="font-size:13px;color:rgba(244,242,238,.4)">© 2026 Kasra Visuals — Commercial &amp; brand film studio</div>
+  </footer>
+
+  <!-- FILM MODAL -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;background:rgba(6,6,7,.88);backdrop-filter:blur(8px);animation:kv-in .28s ease both">
+      <div style="width:100%;max-width:1040px">
+        <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid rgba(244,242,238,.14);background:repeating-linear-gradient(135deg,#141416 0,#141416 12px,#111 12px,#111 24px)">
+          <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+            <iframe src="{{ activeVideo }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+          </sc-if>
+          <sc-if value="{{ noVideo }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:12px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:rgba(244,242,238,.4)">
+              <div style="width:64px;height:64px;border-radius:50%;background:var(--accent,#e0894a);display:flex;align-items:center;justify-content:center;animation:kv-core 2s ease-in-out infinite">
+                <span style="width:0;height:0;border-left:20px solid #0a0a0b;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px"></span>
+              </div>
+              VIMEO EMBED GOES HERE
+            </div>
+          </sc-if>
+        </div>
+        <div onClick="{{ stop }}" style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:18px">
+          <div>
+            <div style="font-size:22px;font-weight:600">{{ activeClient }}</div>
+            <div style="font-size:13.5px;color:rgba(244,242,238,.55);margin-top:3px">{{ activeCategory }} · {{ activeTitle }}</div>
+          </div>
+        </div>
+      </div>
+      <button onClick="{{ closeModal }}" style="position:absolute;top:28px;right:32px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(244,242,238,.24);background:rgba(10,10,11,.6);color:#f4f2ee;font-size:20px;cursor:pointer">✕</button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#e0894a&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#e0894a&quot;,&quot;#c9a24b&quot;,&quot;#6fa8b4&quot;,&quot;#b5615a&quot;,&quot;#e8e4dc&quot;],&quot;section&quot;:&quot;Style&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.rootRef = React.createRef();
+    this.state = { hovered: null, active: null };
+  }
+  applyAccent(){
+    const el = this.rootRef.current;
+    if (el) el.style.setProperty('--accent', this.props.accent || '#e0894a');
+  }
+  componentDidMount(){ this.applyAccent(); }
+  componentDidUpdate(){ this.applyAccent(); }
+
+  renderVals(){
+    const accent = this.props.accent || '#e0894a';
+    // To wire up a real film: set `vimeo` to the Vimeo player URL,
+    // e.g. 'https://player.vimeo.com/video/76979871'
+    const data = [
+      { id:1, client:'Aeris Athletic', category:'Commercial', title:'Spring campaign', year:'2026', vimeo:'' },
+      { id:2, client:'Noir Atelier', category:'Fashion', title:'SS26 lookbook', year:'2026', vimeo:'' },
+      { id:3, client:'Vantage OS', category:'Tech', title:'Product launch', year:'2025', vimeo:'' },
+      { id:4, client:'Grove & Grain', category:'Food & Bev', title:'Founders story', year:'2025', vimeo:'' },
+      { id:5, client:'Velar Motors', category:'Automotive', title:'EV reveal', year:'2025', vimeo:'' },
+      { id:6, client:'Lumen Skincare', category:'Commercial', title:'Brand anthem', year:'2024', vimeo:'' },
+      { id:7, client:'Halcyon Hotels', category:'Hospitality', title:'Property film', year:'2024', vimeo:'' },
+      { id:8, client:'Field & Forge', category:'Craft', title:'Maker documentary', year:'2024', vimeo:'' },
+      { id:9, client:'Northwind Audio', category:'Tech', title:'Launch teaser', year:'2023', vimeo:'' },
+    ];
+    const films = data.map(it => {
+      const hov = this.state.hovered === it.id;
+      return {
+        ...it, ph:'16:9 · FILM STILL',
+        onEnter: () => this.setState({ hovered: it.id }),
+        onLeave: () => this.setState({ hovered: null }),
+        onOpen: () => this.setState({ active: it }),
+        zoomStyle: `position:absolute;inset:0;background:radial-gradient(80% 80% at 50% 40%, ${accent}22, transparent 70%);opacity:${hov?1:0};transition:opacity .35s`,
+        playStyle: `position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:${accent};display:flex;align-items:center;justify-content:center;transform:scale(${hov?1:.6});opacity:${hov?1:0};transition:all .3s`
+      };
+    });
+    const a = this.state.active;
+    return {
+      rootRef: this.rootRef,
+      navHover: { opacity: 1, color: accent },
+      ctaHover: { transform: 'translateY(-2px)' },
+      films,
+      modalOpen: !!a,
+      closeModal: () => this.setState({ active: null }),
+      stop: (e) => e.stopPropagation(),
+      hasVideo: !!(a && a.vimeo),
+      noVideo: !!(a && !a.vimeo),
+      activeVideo: a && a.vimeo ? a.vimeo : '',
+      activeClient: a ? a.client : '',
+      activeCategory: a ? a.category : '',
+      activeTitle: a ? a.title : '',
+    };
+  }
+}
+</script>
+</body>
+</html>
